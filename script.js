@@ -16,52 +16,65 @@ function writePassword() {
 }
 
 function generatePassword() {
-  var passwordArr = []
-  var length = prompt("How long would you like your password to be?");
-  if (length >= 8 && length <= 128) {
-    alert("OK, your password will be " + length + " characters.");
-    console.log(length);
+  var passwordArr = [];
+  var finalPass = "";
+  var passLength = prompt("How long would you like your password to be?");
+  // passwordArr.length = passLength;
+
+  if (passLength >= 8 && passLength <= 128) {
+    alert("OK, your password will be " + passLength + " characters.");
+    console.log(passLength);
   }
   else {
     alert("Password must be between 8 and 128 characters!");
-
+    return "";
   }
 
   var upCase = confirm("Would you like uppercase letters to be included?");
   if (upCase === true){
     //Reference passwordArr variable, assign it to itself with concatenated uppercase array characters
-    alphaUp.concat(passwordArr);
+    passwordArr = alphaUp.concat(passwordArr);
     console.log(upCase);
-    console.log(passwordArr);
+    console.log("Character poll: " + passwordArr);
 
   }
   
   var lowCase = confirm("Would you like lowercase letters to be included?");
   if (lowCase === true) {
-    alphaLow.concat(passwordArr);
+    passwordArr = alphaLow.concat(passwordArr);
     console.log(lowCase);
+    console.log("Character poll: " + passwordArr);
   }
+
  var num = confirm("Would you like numbers to be included?"); 
  if (num === true) {
-  numbers.concat(passwordArr);
+  passwordArr = numbers.concat(passwordArr);
    console.log(num);
-
+   console.log("Character poll: " + passwordArr);
   }
   
   var special = confirm("Would you like special characters to be included?");
   if (special === true){
-    specChars.concat(passwordArr);
-    console.log(special);
+    passwordArr = specChars.concat(passwordArr);
+    console.log(special); 
+    console.log("Character poll: " + passwordArr);
+  }
+
+  if (passwordArr === 0) {
 
   }
-// Need a for loop and we need to assign password to itself with a Math.random, Math.floor selection of characters from the passwordArr with the length user selected in beginning
-  // for (i=0, i< length, i++) {
-  //   Math.floor(Math.random)
-  // }
-  // writePassword(passwordArr);
+  else{
+    // Need a for loop and we need to assign password to itself with a Math.random, Math.floor selection of characters from the passwordArr with the length user selected in beginning
+  for(i = 0; i < passLength; i++) {
+    var randoPass = Math.floor(Math.random()*passLength);
+    finalPass += passwordArr[randoPass];
+    console.log(finalPass);
+
+  }
+  return finalPass;
+  }
+  
 }
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
