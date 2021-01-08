@@ -13,6 +13,9 @@ function writePassword() {
 
   passwordText.value = password;
   console.log(password);
+
+  alert("Access Granted! Your new password is below. To generate a new password, click the 'Generate Password' button");
+
 }
 
 function generatePassword() {
@@ -66,14 +69,14 @@ function generatePassword() {
   else{
     // Need a for loop and we need to assign password to itself with a Math.random, Math.floor selection of characters from the passwordArr with the length user selected in beginning
   for(i = 0; i < passLength; i++) {
-    var randoPass = Math.floor(Math.random()*passLength);
+    var randoPass = Math.floor(Math.random()*passwordArr.length);
     finalPass += passwordArr[randoPass];
     console.log(finalPass);
 
   }
   return finalPass;
   }
-  
+
 }
 
 // Add event listener to generate button
